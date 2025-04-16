@@ -1,7 +1,10 @@
 *.iml
 .gradle
 .idea
+.kotlin
 .DS_Store
+androidApp/build
+shared/build
 build
 captures
 .externalNativeBuild
