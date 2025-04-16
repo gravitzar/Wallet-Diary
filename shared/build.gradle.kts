@@ -13,7 +13,7 @@ kotlin {
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_1_8)
+                    jvmTarget.set(JvmTarget.JVM_17)
                 }
             }
         }
@@ -40,6 +40,7 @@ kotlin {
             api(compose.runtime)
             api(compose.foundation)
             api(compose.material3)
+            api(compose.materialIconsExtended)
             @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
             api(compose.components.resources)
 
@@ -55,13 +56,15 @@ kotlin {
 }
 
 android {
-    namespace = "me.akhil.walletdiary"
-    compileSdk = 35
+    namespace = "me.akhil.walletdiary.shared"
+    compileSdk = libs.versions.androidCompileSdk.get().toInt()
+
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.androidMinSdk.get().toInt()
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }

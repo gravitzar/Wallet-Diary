@@ -1,4 +1,4 @@
-package me.akhil.walletdiary.android
+package me.akhil.walletdiary
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,7 +11,7 @@ import com.arkivanov.decompose.defaultComponentContext
 import me.akhil.walletdiary.navigation.RootComponent
 import me.akhil.walletdiary.navigation.RootContent
 
-class MainActivity : ComponentActivity() {
+class WalletDiaryActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,10 +21,10 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-            MyApplicationTheme {
+            WalletDiaryTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background,
                 ) {
                     // Use our Decompose-powered navigation
                     RootContent(rootComponent)

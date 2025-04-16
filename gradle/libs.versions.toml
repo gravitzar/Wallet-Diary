@@ -1,6 +1,13 @@
 [versions]
+androidCompileSdk = "35"
+androidMinSdk = "24"
+androidTargetSdk = "35"
+androidVersionName = "1.0.0"
+androidVersionCode = "1"
+#--------------------------------
 agp = "8.9.1"
 kotlin = "2.1.10"
+ksp = "2.1.10-1.0.31"
 compose = "1.8.0-beta02"
 androidx-activityCompose = "1.10.1"
 decompose = "3.3.0"
@@ -34,3 +41,4 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
