@@ -47,10 +47,17 @@ kotlin {
             api(libs.decompose)
             api(libs.decompose.compose.extensions)
             implementation(libs.kotlinx.serialization.json)
+
+            implementation(libs.koin.core)
         }
 
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.koin.test)
+        }
+
+        androidMain.dependencies {
+            implementation(libs.koin.android)
         }
     }
 }

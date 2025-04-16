@@ -6,6 +6,7 @@ androidVersionName = "1.0.0"
 androidVersionCode = "1"
 #--------------------------------
 agp = "8.9.1"
+koin = "4.0.1"
 kotlin = "2.1.10"
 ksp = "2.1.10-1.0.31"
 compose = "1.8.0-beta02"
@@ -15,6 +16,9 @@ essenty = "2.5.0"
 kotlinxSerializationJson = "1.8.1"
 
 [libraries]
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 
