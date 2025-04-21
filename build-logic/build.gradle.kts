@@ -1,6 +1,3 @@
-import org.gradle.kotlin.dsl.`kotlin-dsl`
-import org.gradle.api.artifacts.VersionCatalogsExtension
-
 plugins {
     `kotlin-dsl`
 }
@@ -22,4 +19,7 @@ gradlePlugin {
 
 dependencies {
     implementation("com.mixpanel:mixpanel-java:1.4.4")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation("com.squareup.okhttp3:mockwebserver:4.12.0")
 }

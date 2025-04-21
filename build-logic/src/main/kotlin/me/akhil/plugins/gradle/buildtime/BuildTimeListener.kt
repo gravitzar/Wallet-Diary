@@ -6,6 +6,7 @@ import org.gradle.api.initialization.Settings
 import org.gradle.api.internal.tasks.execution.statistics.TaskExecutionStatisticsEventAdapter
 import org.gradle.api.invocation.Gradle
 import org.gradle.internal.event.ListenerManager
+import org.gradle.internal.time.Clock
 import org.gradle.invocation.DefaultGradle
 
 internal class BuildTimeListener(
@@ -13,17 +14,29 @@ internal class BuildTimeListener(
     private val buildReporter: BuildReporter
 ) : BuildListener {
     private val taskExecutionStatisticsEventAdapter = TaskExecutionStatisticsEventAdapter()
+    private var configuredTime: Long? = null
 
     override fun settingsEvaluated(gradle: Settings) = Unit
     override fun projectsLoaded(gradle: Gradle) = Unit
     override fun projectsEvaluated(gradle: Gradle) {
         val listenerManager = (gradle as DefaultGradle).services[ListenerManager::class.java]
         listenerManager.addListener(taskExecutionStatisticsEventAdapter)
+
+        configuredTime = gradle.services[Clock::class.java].currentTime
     }
 
     @Deprecated("Deprecated in Java")
     override fun buildFinished(result: BuildResult) {
-        val buildData = BuildDataFactory.buildData(result, taskExecutionStatisticsEventAdapter.statistics)
+        if (configuredTime == null) {
+            val gradle = result.gradle as DefaultGradle
+            val services = gradle.services
+
+            configuredTime = services[Clock::class.java].currentTime
+        }
+        val buildData = buildDataFactory.buildData(result, taskExecutionStatisticsEventAdapter.statistics, configuredTime!!)
+
+        println("Build data collected in ${buildData.buildDataCollectionOverhead} ms")
+
         buildReporter.report(buildData)
     }
 }
