@@ -5,17 +5,21 @@ plugins {
     `kotlin-dsl`
 }
 
-// Allow accessing libs from the root project's version catalog
-// Note: This requires Gradle 7.4+ and specific setup.
-// Alternatively, declare versions directly or use another sharing mechanism.
-// For simplicity, we'll assume direct access works or versions are clear.
-//val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 gradlePlugin {
     plugins {
-
+        register("buildTime") {
+            id = "me.akhil.plugins.gradle.buildtime"
+            implementationClass = "me.akhil.plugins.gradle.buildtime.BuildTimePlugin"
+        }
     }
 }
 
 dependencies {
-} 
+    implementation("com.mixpanel:mixpanel-java:1.4.4")
+}
