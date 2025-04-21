@@ -14,6 +14,10 @@ gradlePlugin {
             id = "me.akhil.plugins.gradle.buildtime"
             implementationClass = "me.akhil.plugins.gradle.buildtime.BuildTimePlugin"
         }
+        register("statsPlugin") {
+            id = "me.akhil.plugins.gradle.module"
+            implementationClass = "me.akhil.plugins.gradle.module.ModuleStatsPlugin"
+        }
     }
 }
 
